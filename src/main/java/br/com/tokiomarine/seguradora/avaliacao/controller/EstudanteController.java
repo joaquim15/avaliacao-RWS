@@ -50,7 +50,7 @@ public class EstudanteController {
 	}
 
 	@PostMapping("atualizar/{id}")
-	public String atualizarEstudante(@PathVariable("id") final Long id, @Valid final Estudante estudante, final BindingResult result, Model model) {
+	public String atualizarEstudante(@PathVariable("id") final Long id, @Valid final Estudante estudante, final BindingResult result, final Model model) {
 		if (result.hasErrors()) {
 			return "atualizar-estudante";
 		}
@@ -62,8 +62,8 @@ public class EstudanteController {
 	}
 
 	@GetMapping("apagar/{id}")
-	public String apagarEstudante(@PathVariable("id") final Long id, Model model) {
-		// TODO IMPLEMENTAR A EXCLUSAO DE ESTUDANTES
+	public String apagarEstudante(@PathVariable("id") final Long id, final Model model) {
+		this.service.apagarEstudante(id);
 		model.addAttribute("estudantes", this.service.buscarEstudantes());
 		return "index";
 	}
