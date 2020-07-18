@@ -27,7 +27,7 @@ public class EstudanteServiceImpl implements EstudandeService {
 
 	@Override
 	public List<Estudante> buscarEstudantes() {
-		return null;
+		return this.repository.findAll();
 	}
 
 	@Override
