@@ -21,51 +21,50 @@ public class EstudanteController {
 	@Autowired EstudandeService service;
 
 	@GetMapping("criar")
-	public String iniciarCastrado(Estudante estudante) {
+	public String iniciarCastrado(final Estudante estudante) {
 		return "cadastrar-estudante";
 	}
 
 	@GetMapping("listar")
-	public String listarEstudantes(Model model) {
-		model.addAttribute("estudantes", service.buscarEstudantes());
+	public String listarEstudantes(final Model model) {
+		model.addAttribute("estudantes", this.service.buscarEstudantes());
 		return "index";
 	}
 
 	@PostMapping("add")
-	public String adicionarEstudante(@Valid Estudante estudante, BindingResult result, Model model) {
+	public String adicionarEstudante(@Valid final Estudante estudante, final BindingResult result, final Model model) {
 		if (result.hasErrors()) {
 			return "cadastrar-estudante";
 		}
 
-		service.cadastrarEstudante(estudante);
+		this.service.cadastrarEstudante(estudante);
 
 		return "redirect:listar";
 	}
 
 	@GetMapping("editar/{id}")
-	public String exibirEdicaoEstudante(long id, Model model) {
-		Estudante estudante = service.buscarEstudante(id);
+	public String exibirEdicaoEstudante(@PathVariable("id") final Long id, final Model model) {
+		Estudante estudante = this.service.buscarEstudante(id);
 		model.addAttribute("estudante", estudante);
 		return "atualizar-estudante";
 	}
 
 	@PostMapping("atualizar/{id}")
-	public String atualizarEstudante(@PathVariable("id") long id, @Valid Estudante estudante, BindingResult result, Model model) {
+	public String atualizarEstudante(@PathVariable("id") final Long id, @Valid final Estudante estudante, final BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			// estudante.setId(id);
 			return "atualizar-estudante";
 		}
 
-		service.atualizarEstudante(estudante);
+		this.service.atualizarEstudante(estudante);
 
-		model.addAttribute("estudantes", service.buscarEstudantes());
+		model.addAttribute("estudantes", this.service.buscarEstudantes());
 		return "index";
 	}
 
 	@GetMapping("apagar/{id}")
-	public String apagarEstudante(@PathVariable("id") long id, Model model) {
+	public String apagarEstudante(@PathVariable("id") final Long id, Model model) {
 		// TODO IMPLEMENTAR A EXCLUSAO DE ESTUDANTES
-		model.addAttribute("estudantes", service.buscarEstudantes());
+		model.addAttribute("estudantes", this.service.buscarEstudantes());
 		return "index";
 	}
 }

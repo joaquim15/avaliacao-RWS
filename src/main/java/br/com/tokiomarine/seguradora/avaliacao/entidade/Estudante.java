@@ -18,7 +18,7 @@ public class Estudante implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 
 	@NotNull
 	@NotBlank(message = "Nome é obrigatório")
@@ -37,7 +37,7 @@ public class Estudante implements Serializable {
 		super();
 	}
 
-	public Estudante(Integer id, String nome, String email, String telefone) {
+	public Estudante(Long id, String nome, String email, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -45,11 +45,11 @@ public class Estudante implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
