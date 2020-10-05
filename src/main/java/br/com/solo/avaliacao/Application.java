@@ -1,4 +1,4 @@
-package br.com.tokiomarine.seguradora.avaliacao;
+package br.com.solo.avaliacao;
 
 import org.springframework.boot.SpringApplication;
 
